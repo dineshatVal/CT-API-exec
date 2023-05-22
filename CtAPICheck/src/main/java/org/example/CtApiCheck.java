@@ -30,7 +30,7 @@ public class CtApiCheck {
         Cart custCart = cartAPI.addCustomerCart("M0E20000000DOO7", "2", apiRoot);
         CustomerSignInResult customerSignInResult = cartAPI.mergeAnonCart(anonCart, apiRoot);
 
-        System.out.println("Testing");
+        System.out.println("Testing-1");
     }
 
     private static ProjectApiRoot getApiRoot() {
