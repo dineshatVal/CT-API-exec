@@ -3,7 +3,6 @@ package org.example.importapi;
 import com.commercetools.importapi.client.ProjectApiRoot;
 import com.commercetools.importapi.models.common.LocalizedStringBuilder;
 import com.commercetools.importapi.models.common.ProductTypeKeyReferenceBuilder;
-import com.commercetools.importapi.models.customers.CustomerAddressBuilder;
 import com.commercetools.importapi.models.customers.CustomerImportBuilder;
 import com.commercetools.importapi.models.importcontainers.ImportContainer;
 import com.commercetools.importapi.models.importrequests.CustomerImportRequestBuilder;
@@ -16,13 +15,13 @@ public class ImportSampleProduct {
     public ImportResponse importProduct(ProjectApiRoot importApiRoot, ImportContainer container) {
         ProductDraftImportRequest productDraftImportRequest = ProductDraftImportRequestBuilder.of()
                 .plusResources(ProductDraftImportBuilder.of()
-                        .key("sampleImportedProduct-1")
-                        .description(LocalizedStringBuilder.of().addValue("en", "Sample imported product").build())
+                        .key("sampleImportedProduct-3")
+                        .description(LocalizedStringBuilder.of().addValue("en", "Sample imported product 2").build())
                         .productType(ProductTypeKeyReferenceBuilder.of()
                                 .key("sample-product-type")
                                 .build())
-                        .name(LocalizedStringBuilder.of().addValue("en","My imported product").build())
-                        .slug(LocalizedStringBuilder.of().addValue("en","My-imported-product-slug").build())
+                        .name(LocalizedStringBuilder.of().addValue("en","My imported product-2").build())
+                        .slug(LocalizedStringBuilder.of().addValue("en","My-imported-product-slug-1").build())
                         .build())
                 .build();
 

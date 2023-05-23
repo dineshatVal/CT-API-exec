@@ -20,6 +20,7 @@ public class ImportAPICheck {
         ImportSampleProduct importSampleProduct = new ImportSampleProduct();
         ImportResponse importResponse = importSampleProduct.importProduct(importApiRoot, container);
 
+
         System.out.println("Testing import container creation");
     }
 
@@ -39,7 +40,6 @@ public class ImportAPICheck {
                             .resourceType(ImportResourceType.PRODUCT_DRAFT)
                             .build())
                     .executeBlocking().getBody();
-            System.out.println("testing");
         }
 
         return importContainer;

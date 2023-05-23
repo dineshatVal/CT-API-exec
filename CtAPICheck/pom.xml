@@ -13,6 +13,7 @@
         <maven.compiler.target>17</maven.compiler.target>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <commercetools.version>9.2.1</commercetools.version>
+        <slf4j.version>LATEST</slf4j.version>
     </properties>
     <dependencies>
         <dependency>
@@ -34,6 +35,16 @@
             <groupId>com.commercetools.sdk</groupId>
             <artifactId>commercetools-sdk-java-importapi</artifactId>
             <version>${commercetools.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>org.slf4j</groupId>
+            <artifactId>slf4j-api</artifactId>
+            <version>${slf4j.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>org.slf4j</groupId>
+            <artifactId>slf4j-simple</artifactId>
+            <version>${slf4j.version}</version>
         </dependency>
     </dependencies>
 
