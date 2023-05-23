@@ -30,6 +30,11 @@
             <artifactId>commercetools-sdk-java-api</artifactId>
             <version>${commercetools.version}</version>
         </dependency>
+        <dependency>
+            <groupId>com.commercetools.sdk</groupId>
+            <artifactId>commercetools-sdk-java-importapi</artifactId>
+            <version>${commercetools.version}</version>
+        </dependency>
     </dependencies>
 
 </project>
