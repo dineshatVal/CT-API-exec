@@ -1,43 +1,32 @@
 package org.example.myCustomer;
 
 import com.commercetools.api.client.ProjectApiRoot;
-import com.commercetools.api.defaultconfig.ServiceRegion;
 import com.commercetools.api.models.customer.*;
-import io.vrap.rmf.base.client.AuthenticationToken;
-import io.vrap.rmf.base.client.HttpClientSupplier;
-import io.vrap.rmf.base.client.oauth2.ClientCredentials;
-import io.vrap.rmf.base.client.oauth2.GlobalCustomerPasswordTokenSupplier;
-import io.vrap.rmf.base.client.utils.ClientUtils;
-
-import java.time.Duration;
 
 public class MyCustomerAPIActions {
 
-    public Customer resetPassword(ProjectApiRoot apiRoot) {
-        final ClientCredentials credentials = ClientCredentials.of()
-                .withClientId("xUH4sYQlQmemYo6IYtdMEITh")
-                .withClientSecret("0aTql8m1CppFTXz1dMSKXjYkNnsFuA7o")
-                .build();
-        GlobalCustomerPasswordTokenSupplier supplier = new GlobalCustomerPasswordTokenSupplier(
-                credentials.getClientId(), credentials.getClientSecret(), "dinesh.tharayil@valtech.com",
-                "June@2021", null,
-                ServiceRegion.GCP_AUSTRALIA_SOUTHEAST1.getPasswordFlowTokenURL("practiceproject-2023"),
-                HttpClientSupplier.of().get());
-        final AuthenticationToken token = ClientUtils.blockingWait(supplier.getToken(), Duration.ofSeconds(10));
+    public Customer resetPassword(ProjectApiRoot apiRoot, String email) {
+
+        CustomerCreatePasswordResetToken customerCreatePasswordResetToken = CustomerCreatePasswordResetTokenBuilder.of()
+                .email(email)
+                .ttlMinutes(10l).build();
+        CustomerToken customerToken = apiRoot.customers()
+                .passwordToken()
+                .post(customerCreatePasswordResetToken)
+                .executeBlocking().getBody();
 
 
         MyCustomerResetPassword myCustomerResetPassword = MyCustomerResetPasswordBuilder.of()
-                .tokenValue(token.getRefreshToken())
-                .newPassword("July@2021")
+                .tokenValue(customerToken.getValue())
+                .newPassword("abc@2023")
                 .build();
+
 
         return apiRoot.me()
                 .password()
                 .reset()
                 .post(myCustomerResetPassword)
                 .executeBlocking().getBody();
-
-
     }
 
     public Customer getMe(ProjectApiRoot projectApiRoot){

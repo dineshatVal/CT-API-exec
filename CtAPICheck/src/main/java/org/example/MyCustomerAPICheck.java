@@ -21,30 +21,19 @@ public class MyCustomerAPICheck {
 
         MyCustomerAPIActions myCustomerAPIActions = new MyCustomerAPIActions();
         Customer me = myCustomerAPIActions.getMe(accessToken);
-        Customer changePassword = myCustomerAPIActions.changePassword(accessToken, me);
-        //Customer resetPassword = myCustomerAPIActions.resetPassword(accessToken);
+       // Customer changePassword = myCustomerAPIActions.changePassword(accessToken, me);
+        Customer resetPassword = myCustomerAPIActions.resetPassword(accessToken, me.getEmail());
         System.out.println("Testing access token");
     }
 
     private static ProjectApiRoot getAccessToken() {
-
-        /*final ClientCredentials credentials = ClientCredentials.of()
-                .withClientId("xUH4sYQlQmemYo6IYtdMEITh")
-                .withClientSecret("0aTql8m1CppFTXz1dMSKXjYkNnsFuA7o")
-                .build();
-        GlobalCustomerPasswordTokenSupplier supplier = new GlobalCustomerPasswordTokenSupplier(
-                credentials.getClientId(), credentials.getClientSecret(), "dinesh.tharayil@valtech.com",
-                "June@2021", null,
-                ServiceRegion.GCP_AUSTRALIA_SOUTHEAST1.getPasswordFlowTokenURL("practiceproject-2023"),
-                HttpClientSupplier.of().get());
-        final AuthenticationToken token = ClientUtils.blockingWait(supplier.getToken(), Duration.ofSeconds(10));*/
 
         ProjectApiRoot apiRoot = ApiRootBuilder.of()
                 .withApiBaseUrl("https://api.australia-southeast1.gcp.commercetools.com")
                 .withGlobalCustomerPasswordFlow((ClientCredentials.of()
                         .withClientId("xUH4sYQlQmemYo6IYtdMEITh")
                         .withClientSecret("0aTql8m1CppFTXz1dMSKXjYkNnsFuA7o")
-                        .build()), "abc@yahoo.com", "abc@2023", "https://auth.australia-southeast1.gcp.commercetools.com/oauth/practiceproject-2023/customers/token")
+                        .build()), "abc@yahoo.com", "July@2021", "https://auth.australia-southeast1.gcp.commercetools.com/oauth/practiceproject-2023/customers/token")
                 .build("practiceproject-2023");
 
         System.out.println("test");
